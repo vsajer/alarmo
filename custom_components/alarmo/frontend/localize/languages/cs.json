@@ -1,0 +1,546 @@
+{ 
+  "common" : { 
+    "modes_short" : { 
+      "armed_away" : " Pryč " , 
+      "armed_home" : " Domů " , 
+      "armed_night" : " Noc " , 
+      "armed_custom_bypass" : " Vlastní " , 
+      "armed_vacation" : " Dovolená " 
+    }, 
+    "enabled" : " Povoleno " , 
+    "disabled" : " Zakázáno " 
+  }, 
+  "components" : { 
+    "time_slider" : { 
+      "seconds" : " sec " , 
+      "minutes" : " min " , 
+      "infinite" : " nekonečno " , 
+      "none" : " žádný " 
+    }, 
+    "editor" : { 
+      "ui_mode" : " Do uživatelského rozhraní " , 
+      "yaml_mode" : " Do YAML " , 
+      "edit_in_yaml" : " Upravit v YAML " 
+    }, 
+    "table" : { 
+      "filter" : { 
+        "label" : " Filtrovat položky " , 
+        "item" : " Filtrovat podle {name} " , 
+        "hidden_items" : " {number} {number,plural,\n one {položka je} \n other {položky jsou} \n } skryté " 
+      } 
+    } 
+  }, 
+  "title" : " Panel alarmu " , 
+  "panels" : { 
+    "general" : { 
+      "title" : " General " , 
+      "cards" : { 
+        "general" : { 
+          "description" : " Tento panel definuje některá globální nastavení alarmu. " , 
+          "fields" : { 
+            "disarm_after_trigger" : { 
+              "heading" : " Deaktivace po spuštění " , 
+              "description" : " Po vypršení času spuštění deaktivujte alarm namísto návratu do aktivovaného stavu. " 
+            }, 
+            "enable_mqtt" : { 
+              "heading" : " Povolit MQTT " , 
+              "description" : " Umožněte ovládání poplachového panelu prostřednictvím MQTT. " 
+            }, 
+            "enable_master" : { 
+              "heading" : " Zapnout hlavni alarm " , 
+              "description" : " Vytvoří entitu pro ovládání všech oblastí současně. " 
+            } 
+          }, 
+          "actions" : { 
+            "setup_mqtt" : " Konfigurace MQTT " , 
+            "setup_master" : " Hlavní konfigurace " 
+          } 
+        }, 
+        "modes" : { 
+          "title" : " Režimy " , 
+          "description" : " Tento panel lze použít k nastavení režimů aktivace alarmu. " , 
+          "modes" : { 
+            "armed_away" : " bude použito, když všichni lidé opustí dům. Všechny dveře a okna umožňující přístup do domu budou střeženy, stejně jako pohybová čidla uvnitř domu. " , 
+            "armed_home" : " Ozbrojený domov (také známý jako ozbrojený pobyt) bude použit při nastavování poplachu, když jsou lidé v domě. Všechny dveře a okna umožňující přístup do domu budou střeženy, ale ne pohybové senzory uvnitř domu. " , 
+            "armed_night" : " Při nastavování budíku před spaním bude použita zapnutá noc. Všechny dveře a okna umožňující přístup do domu budou hlídané a vybraná pohybová čidla (v přízemí) v domě. " , 
+            "armed_vacation" : " dovolená může být použita jako rozšíření režimu střežené nepřítomnosti v případě delší nepřítomnosti. Doby zpoždění a spouštěcí reakce mohou být přizpůsobeny (dle potřeby) vzdálenosti od domova. " , 
+            "armed_custom_bypass" : " Další režim pro definování vlastního bezpečnostního perimetru. " 
+          }, 
+          "number_sensors_active" : " {number} {number, plural, \n one {senzor} \n other {senzors} \n } aktivní " , 
+          "fields" : { 
+            "status" : { 
+              "heading" : " Stav " , 
+              "description" : " Řídí, zda lze alarm v tomto režimu aktivovat. " 
+            }, 
+            "exit_delay" : { 
+              "heading" : " Odchodové zpoždění " , 
+              "description" : " Při aktivaci poplachu během této doby senzory ještě nespustí poplach. " 
+            }, 
+            "entry_delay" : { 
+              "heading" : " Vstupní zpoždění " , 
+              "description" : " Doba zpoždění do spuštění alarmu po aktivaci jednoho ze senzorů. " 
+            }, 
+            "trigger_time" : { 
+              "heading" : " Čas spuštění " , 
+              "description" : " Doba, po kterou alarm zůstane po aktivaci ve spuštěném stavu. " 
+            } 
+          } 
+        }, 
+        "mqtt" : { 
+          "title" : " Konfigurace MQTT " , 
+          "description" : " Tento panel lze použít pro konfiguraci rozhraní MQTT. " , 
+          "fields" : { 
+            "state_topic" : { 
+              "heading" : " Uveďte téma " , 
+              "description" : " Téma, ke kterému jsou publikovány aktualizace stavu " 
+            }, 
+            "event_topic" : { 
+              "heading" : " Téma události " , 
+              "description" : " Téma, na kterém jsou publikovány poplachové události " 
+            }, 
+            "command_topic" : { 
+              "heading" : " Příkazové téma " , 
+              "description" : " Téma, které Alarm naslouchá příkazům zapnout/vypnout. " 
+            }, 
+            "require_code" : { 
+              "heading" : " Vyžadovat kód " , 
+              "description" : " Vyžadovat odeslání kódu s příkazem. " 
+            }, 
+            "state_payload" : { 
+              "heading" : " Konfigurovat užitečné zatížení pro jednotlivé státy " , 
+              "item" : " Definujte užitečné zatížení pro stav ''{state}'' " 
+            }, 
+            "command_payload" : { 
+              "heading" : " Konfigurovat užitečné zatížení na příkaz " , 
+              "item" : " Definujte užitečné zatížení pro příkaz ''{command}'' " 
+            } 
+          } 
+        }, 
+        "areas" : { 
+          "title" : " areas " , 
+          "description" : " oblast lze použít k rozdělení vašeho poplašného systému do více oddílů. " , 
+          "no_items" : " Zatím nejsou definovány žádné oblasti. " , 
+          "table" : { 
+            "remarks" : " Poznamky " , 
+            "summary" : " Tato oblast obsahuje {summary_sensors} a {summary_automations}. " , 
+            "summary_sensors" : " {number} {number, plural, \n one {senzor} \n other {senzors} \n } " , 
+            "summary_automations" : " {number} {number, plural, \n one {automation} \n other {automations} \n } " 
+          }, 
+          "actions" : { 
+            "add" : " Přidat " 
+          } 
+        } 
+      }, 
+      "dialogs" : { 
+        "create_area" : { 
+          "title" : " Nová oblast " , 
+          "fields" : { 
+            "copy_from" : " Kopírovat nastavení z " 
+          } 
+        }, 
+        "edit_area" : { 
+          "title" : " Oblast úprav ''{area}'' " , 
+          "name_warning" : " Poznámka: změnou názvu se změní ID entity " 
+        }, 
+        "remove_area" : { 
+          "title" : " Odstranit oblast? " , 
+          "description" : " Opravdu chcete odstranit tuto oblast? Tato oblast obsahuje {sensors} senzory a {automations} automatizace, které budou také odstraněny. " 
+        }, 
+        "edit_master" : { 
+          "title" : " Hlavní konfigurace " 
+        }, 
+        "disable_master" : { 
+          "title" : " Zakázat hlavní? " , 
+          "description" : " Opravdu chcete odstranit hlavní poplach? Tato oblast obsahuje automatizace {automations}, které budou touto akcí odstraněny. " 
+        } 
+      } 
+    }, 
+    "senzory" : { 
+      "title" : " Sensory " , 
+      "cards" : { 
+        "senzors" : { 
+          "description" : " Aktuálně nakonfigurované senzory. Kliknutím na položku provedete změny. " , 
+          "table" : { 
+            "no_items" : " Nejsou zde žádné senzory k zobrazení. " , 
+            "no_area_warning" : " Čidlo není přiřazeno k žádné oblasti. " , 
+            "arm_modes" : " Režimy paže " , 
+            "always_on" : " (Vždy) " 
+          } 
+        }, 
+        "add_sensors" : { 
+          "title" : " Přidat senzory " , 
+          "description" : " Přidejte další senzory. Ujistěte se, že vaše senzory mají vhodný název, abyste je mohli identifikovat. " , 
+          "no_items" : " Nejsou k dispozici žádné entity HA, které by bylo možné nakonfigurovat pro alarm. Ujistěte se, že jste zahrnuli entity typu binary_sensor. " , 
+          "table" : { 
+            "type" : " Zjištěný typ " 
+          }, 
+          "actions" : { 
+            "add_to_alarm" : " přidat k alarmu " , 
+            "filter_supported" : " Skrýt položky neznámého typu " 
+          } 
+        }, 
+        "editor" : { 
+          "title" : " Upravit senzor " , 
+          "description" : " Konfigurace nastavení senzoru ''{entity}''. " , 
+          "fields" : { 
+            "area" : { 
+              "heading" : " Oblast " , 
+              "description" : " Vyberte oblast, která obsahuje tento senzor. " 
+            }, 
+            "group" : { 
+              "heading" : " skupina " , 
+              "description" : " Skupina s dalšími senzory pro kombinované spouštění. " 
+            }, 
+            "device_type" : { 
+              "heading" : " Typ zařízení " , 
+              "description" : " Vyberte typ zařízení pro automatické použití příslušných nastavení. " , 
+              "choose" : { 
+                "door" : { 
+                  "name" : " Dveře " , 
+                  "description" : " Dveře, brána nebo jiný vchod, který se používá pro vstup/opuštění domova. " 
+                }, 
+                "window" : { 
+                  "name" : " Okno " , 
+                  "description" : " Okno nebo dveře, které se nepoužívají pro vstup do domu, např. balkón. " 
+                }, 
+                "motion" : { 
+                  "name" : " Pohyb " , 
+                  "description" : " Snímač přítomnosti nebo podobné zařízení se zpožděním mezi aktivacemi. " 
+                }, 
+                "tamper" : { 
+                  "name" : " Tamper " , 
+                  "description" : " Detektor odstranění krytu senzoru, senzor rozbití skla atd. " 
+                }, 
+                "environmental" : { 
+                  "name" : " Environmental " , 
+                  "description" : " Snímač kouře/plynu, detektor úniku atd. (nesouvisí s ochranou proti vloupání). " 
+                }, 
+                "other" : { 
+                  "name" : " Jine " 
+                } 
+              } 
+            }, 
+            "always_on" : { 
+              "heading" : " Vždy zapnuto " , 
+              "description" : " Senzor by měl vždy spustit alarm. " 
+            }, 
+            "modes" : { 
+              "heading" : " Povolené režimy " , 
+              "description" : " Režimy alarmu, ve kterých je tento senzor aktivní. " 
+            }, 
+            "arm_on_close" : { 
+              "heading" : " Vynechani odchodové zpoždění " , 
+              "description" : " Po deaktivaci tohoto senzoru bude zbývající odchodové zpoždění automaticky přeskočeno. " 
+            }, 
+            "use_exit_delay" : { 
+              "heading" : " Použít odchodové zpoždění " , 
+              "description" : " Čidlo může být aktivní, když začne odchodové zpoždění. " 
+            }, 
+            "use_entry_delay" : { 
+              "heading" : " Použít zpoždění vstupu " , 
+              "description" : " Aktivace senzoru spustí poplach až po uplinuti zpoždění. " 
+            }, 
+            "allow_open" : { 
+              "heading" : " Povolit otevření po aktivaci " , 
+              "description" : " Pokud je senzor po odchodovém zpoždění stále aktivní, nezpůsobí to selhání zabezpečení. " 
+            }, 
+            "auto_bypass" : { 
+              "heading" : " Vynechat automaticky " , 
+              "description" : " Vylučte tento senzor z alarmu, pokud je otevřený při zapínání. " , 
+              "modes" : " Režimy, ve kterých lze senzor obejít " 
+            }, 
+            "trigger_unavailable" : { 
+              "heading" : " Spustit, když není k dispozici " , 
+              "description" : " Když se stav senzoru stane 'nedostupným', senzor se aktivuje. " 
+            } 
+          }, 
+          "actions" : { 
+            "toggle_advanced" : " Pokročilá nastavení " , 
+            "remove" : " Odstranit " , 
+            "setup_groups" : " Nastavit skupiny " 
+          }, 
+          "errors" : { 
+            "description" : " Opravte prosím následující chyby: " , 
+            "no_area" : " Není vybrána žádná oblast " , 
+            "no_modes" : " Nejsou vybrány žádné režimy, pro které by měl být senzor aktivní " , 
+            "no_auto_bypass_modes" : " Nejsou vybrány žádné režimy, aby senzor mohl být automaticky vynechán " 
+          } 
+        } 
+      }, 
+      "dialogs" : { 
+        "manage_groups" : { 
+          "title" : " Spravovat skupiny senzorů " , 
+          "description" : " Ve skupině senzorů musí být aktivováno několik senzorů během časového období před spuštěním alarmu. " , 
+          "no_items" : " Zatím žádné skupiny " , 
+          "actions" : { 
+            "new_group" : " Nová skupina " 
+          } 
+        }, 
+        "create_group" : { 
+          "title" : " Nová skupina senzorů " , 
+          "fields" : { 
+            "name" : { 
+              "heading" : " Jméno " , 
+              "description" : " Název skupiny senzorů " 
+            }, 
+            "timeout" : { 
+              "heading" : " Časový limit " , 
+              "description" : " Časové období, během kterého po sobě jdoucí aktivace senzoru spustí alarm. " 
+            }, 
+            "sensors" : { 
+              "heading" : " Snímače " , 
+              "description" : " Vyberte senzory obsažené v této skupině. " 
+            } 
+          }, 
+          "errors" : { 
+            "invalid_name" : " Zadáno neplatné jméno. " , 
+            "insufficient_sensors" : " Je třeba vybrat alespoň 2 senzory. " 
+          } 
+        }, 
+        "edit_group" : { 
+          "title" : " Upravit skupinu senzorů ''{name}'' " 
+        } 
+      } 
+    }, 
+    "codes" : { 
+      "title" : " Kódy " , 
+      "cards" : { 
+        "codes" : { 
+          "description" : " Změňte nastavení kódu. " , 
+          "fields" : { 
+            "code_arm_required" : { 
+              "heading" : " Použít aktivační kód" , 
+              "description" : " Vyžadovat kód pro aktivaci alarmu " 
+            }, 
+            "code_disarm_required" : { 
+              "heading" : " Použít deaktivační kód " , 
+              "description" : " Vyžadovat kód pro deaktivaci alarmu " 
+            }, 
+            "code_format" : { 
+              "heading" : " Formát kódu " , 
+              "description" : " Nastaví typ vstupu pro poplachovou kartu Lovelace. " , 
+              "code_format_number" : " PINcode " , 
+              "code_format_text" : " Heslo " 
+            } 
+          } 
+        }, 
+        "user_management" : { 
+          "title" : " Správa uživatelů " , 
+          "description" : " Každý uživatel má svůj vlastní kód pro aktivaci/deaktivaci alarmu. " , 
+          "no_items" : " Zatím nejsou žádní uživatelé " , 
+          "actions" : { 
+            "new_user" : " nový uživatel " 
+          } 
+        }, 
+        "new_user" : { 
+          "title" : " Vytvořit nového uživatele " , 
+          "description" : " Lze vytvořit uživatele pro poskytování přístupu k ovládání alarmu. " , 
+          "fields" : { 
+            "name" : { 
+              "heading" : " Jméno " , 
+              "description" : " Jméno uživatele. " 
+            }, 
+            "code" : { 
+              "heading" : " Kód " , 
+              "description" : " Kód pro tohoto uživatele. " 
+            }, 
+            "confirm_code" : { 
+              "heading" : " Potvrdit kód " , 
+              "description" : " Zopakujte kód. " 
+            }, 
+            "can_arm" : { 
+              "heading" : " Povolit kód pro aktivaci " , 
+              "description" : " Zadáním tohoto kódu se aktivuje alarm " 
+            }, 
+            "can_disarm" : { 
+              "heading" : " Povolit kód pro deaktivaci " , 
+              "description" : " Zadáním tohoto kódu se alarm deaktivuje " 
+            }, 
+            "is_override_code" : { 
+              "heading" : " Zadat kód " , 
+              "description" : " Zadáním tohoto kódu se aktivuje alarm " 
+            }, 
+            "area_limit" : { 
+              "heading" : " Zakázané oblastí " , 
+              "description" : " Omezit uživatele na ovládání pouze vybraných oblastí " 
+            } 
+          }, 
+          "errors" : { 
+            "no_name" : " Není uvedeno žádné jméno. " , 
+            "no_code" : " Kód by měl mít minimálně 4 znaky/čísla. " , 
+            "code_mismatch" : " Kódy se neshodují. " 
+          } 
+        }, 
+        "edit_user" : { 
+          "title" : " Upravit uživatele " , 
+          "description" : " Změnit konfiguraci pro uživatele ''{name}''. " , 
+          "fields" : { 
+            "old_code" : { 
+              "heading" : " Aktuální kód " , 
+              "description" : " Aktuální kód, ponechte prázdné, chcete-li ponechat beze změny. " 
+            } 
+          } 
+        } 
+      } 
+    }, 
+    "actions" : { 
+      "title" : " Oznámení " , 
+      "cards" : { 
+        "notifications" : { 
+          "title" : " Oznámení " , 
+          "description" : " Pomocí tohoto panelu můžete spravovat upozornění, která mají být odeslána při určité poplachové události. " , 
+          "table" : { 
+            "no_items" : " Zatím nejsou vytvořena žádná upozornění. " , 
+            "no_area_warning" : " Akce není přiřazena žádné oblast. " 
+          }, 
+          "actions" : { 
+            "new_notification" : " nové oznámení " 
+          } 
+        }, 
+        "actions" : { 
+          "description" : " Tento panel lze použít k přepnutí zařízení při změně stavu alarmu. " , 
+          "table" : { 
+            "no_items" : " Dosud nebyly vytvořeny žádné oznámení. " 
+          }, 
+          "actions" : { 
+            "new_action" : " nová oznámení " 
+          } 
+        }, 
+        "new_notification" : { 
+          "title" : " Konfigurovat notifikace " , 
+          "description" : " Obdržet notifikaci při aktivaci/deaktivaci alarmu, při aktivaci atd. " , 
+          "trigger" : " Podmínka " , 
+          "actions" : " Úkol " , 
+          "options" : " Možnosti " , 
+          "fields" : { 
+            "event" : { 
+              "heading" : " Událost " , 
+              "description" : " Kdy by se mělo oznámení odeslat " , 
+              "choose" : { 
+                "armed" : { 
+                  "name" : " Alarm je aktivován " , 
+                  "description" : " Alarm je úspěšně aktivován " 
+                }, 
+                "disarmed" : { 
+                  "name" : " Alarm je deaktivován " , 
+                  "description" : " Alarm je deaktivován " 
+                }, 
+                "triggered" : { 
+                  "name" : " Alarm je spuštěn " , 
+                  "description" : " Alarm je spuštěn " 
+                }, 
+                "arm_failure" : { 
+                  "name" : " Nepodařilo se aktivovat " , 
+                  "description" : " Zajištění alarmu selhalo kvůli jednomu nebo více otevřeným senzorům " 
+                }, 
+                "arming" : { 
+                  "name" : " Odchodové zpoždění začalo " , 
+                  "description" : " Začalo zpoždění odchodu, připraven opustit dům. " 
+                }, 
+                "pending" : { 
+                  "name" : " Vstupní zpoždění začalo " , 
+                  "description" : " Vstupní zpoždění začalo, alarm se spustí brzy. " 
+                } 
+              } 
+            }, 
+            "mode" : { 
+              "heading" : " Režim " , 
+              "description" : " Omezte oznámení pro konkrétní aktivačni řežim. (volitelné) " 
+            }, 
+            "title" : { 
+              "heading" : " Název " , 
+              "description" : " Název zprávy s upozorněním " 
+            }, 
+            "message" : { 
+              "heading" : " Zpráva " , 
+              "description" : " Obsah zprávy s upozorněním " , 
+              "insert_wildcard" : " Vložit zástupný znak " , 
+              "placeholders" : { 
+                "armed" : " Budík je nastaven na {{arm_mode}} " , 
+                "disarmed" : " Alarm je nyní VYPNUTÝ " , 
+                "triggered" : " Alarm je spuštěn! Příčina: {{open_sensors}}. " , 
+                "arm_failure" : " Alarm teď nelze aktivovat z důvodu: {{open_sensors}}. " , 
+                "arming" : " Alarm bude brzy aktivován, opusťte prosím dům. " , 
+                "pending" : " Blíží se spuštění alarmu, rychle jej deaktivujte! " 
+              } 
+            }, 
+            "open_sensors_format" : { 
+              "heading" : " Formát pro zástupný znak open_sensors " , 
+              "description" : " Vyberte, které informace o senzoru budou vloženy do zprávy " , 
+              "options" : { 
+                "default" : " Jména a státy " , 
+                "short" : " Pouze jména " 
+              } 
+            }, 
+            "arm_mode_format" : { 
+              "heading" : " Jazyk alarmu " , 
+              "description" : " Vyberte jazyk, ve kterém se do zprávy zobrazi režim aktivace " 
+            }, 
+            "target" : { 
+              "heading" : " Zařízení " , 
+              "description" : " Zařízení, na které se má odeslat zpráva push " 
+            }, 
+            "name" : { 
+              "heading" : " Na co vše upozornit " , 
+              "description" : " Na co vše upozornit " , 
+              "placeholders" : { 
+                "armed" : " Upozornit {target} při aktivaci " , 
+                "disarmed" : " Upozornit {target} na deaktivaci " , 
+                "triggered" : " Upozornit {target} při spuštění " , 
+                "arm_failure" : " Upozornit {target} na selhání " , 
+                "arming" : " Upozornit {target} při odchodu " , 
+                "pending" : " Upozornit {target} při příjezdu " 
+              } 
+            }, 
+            "delete" : { 
+              "heading" : " Smazat akci " , 
+              "description" : " Trvale odebrat tuto akci " 
+            } 
+          }, 
+          "actions" : { 
+            "test" : " Otestuj " 
+          } 
+        }, 
+        "new_action" : { 
+          "title" : " Konfigurovat akci " , 
+          "description" : " Spínač světel nebo zařízení (jako jsou sirény) při zapínání/vypínání alarmu, při aktivaci atd. " , 
+          "fields" : { 
+            "event" : { 
+              "heading" : " Událost " , 
+              "description" : " Kdy by měla být akce provedena " 
+            }, 
+            "area" : { 
+              "heading" : " Oblast " , 
+              "description" : " Oblast, pro kterou se událost vztahuje, ponechte prázdné pro výběr globálního alarmu. " 
+            }, 
+            "mode" : { 
+              "heading" : " Režim " , 
+              "description" : " Omezte akci na konkrétní režimy paže (volitelné) " 
+            }, 
+            "entity" : { 
+              "heading" : " Entita " , 
+              "description" : " Entita pro provedení akce " 
+            }, 
+            "actions" : { 
+              "heading" : " Akce " , 
+              "description" : " Akce, která má být provedena na entitě " , 
+              "no_common_actions" : " Akce lze přiřadit pouze v režimu YAML pro vybrané entity. " 
+            }, 
+            "name" : { 
+              "heading" : " Jméno " , 
+              "description" : " description této akce " , 
+              "placeholders" : { 
+                "armed" : " Nastav {entitu} na {state} při aktivaci " , 
+                "disarmed" : " Při deaktivaci nastavte {entitu} na {state} " , 
+                "triggered" : " Při spuštění nastavit {entitu} na {state} " , 
+                "arm_failure" : " Nastavit {entitu} na {state} při selhání " , 
+                "arming" : " Při odchodu nastavte {entitu} na {state} " , 
+                "pending" : " Při příjezdu nastavte {entity} na {state} " 
+              } 
+            } 
+          } 
+        } 
+      } 
+    } 
+  } 
+} 
